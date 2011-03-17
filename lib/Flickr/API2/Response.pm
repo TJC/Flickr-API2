@@ -9,32 +9,32 @@ our @ISA = qw(HTTP::Response);
 our $VERSION = '0.02';
 
 sub new {
-	my $class = shift;
-	my $self = new HTTP::Response;
-	my $options = shift;
-	bless $self, $class;
-	return $self;
+    my $class   = shift;
+    my $self    = new HTTP::Response;
+    my $options = shift;
+    bless $self, $class;
+    return $self;
 }
 
 sub init_flickr {
-	my ($self, $options) = @_;
-	$self->{tree} = undef;
-	$self->{success} = 0;
-	$self->{error_code} = 0;
-	$self->{error_message} = '';	
+    my ( $self, $options ) = @_;
+    $self->{tree}          = undef;
+    $self->{success}       = 0;
+    $self->{error_code}    = 0;
+    $self->{error_message} = '';
 }
 
 sub set_fail {
-	my ($self, $code, $message) = @_;
-	$self->{success} = 0;
-	$self->{error_code} = $code;
-	$self->{error_message} = $message;
+    my ( $self, $code, $message ) = @_;
+    $self->{success}       = 0;
+    $self->{error_code}    = $code;
+    $self->{error_message} = $message;
 }
 
 sub set_ok {
-	my ($self, $tree) = @_;
-	$self->{success} = 1;
-	$self->{tree} = $tree;
+    my ( $self, $tree ) = @_;
+    $self->{success} = 1;
+    $self->{tree}    = $tree;
 }
 
 1;

@@ -5,40 +5,41 @@ use warnings;
 use HTTP::Request;
 use URI;
 
-our @ISA = qw(HTTP::Request);
+our @ISA     = qw(HTTP::Request);
 our $VERSION = '0.03';
 
 sub new {
-	my $class = shift;
-	my $options = shift;
-	my $self = new HTTP::Request;
-	$self->{api_method}	= $options->{method};
-	$self->{api_args}	= $options->{args};
-	$self->{rest_uri}	= $options->{rest_uri} || 'http://api.flickr.com/services/rest/';
+    my $class   = shift;
+    my $options = shift;
+    my $self    = new HTTP::Request;
+    $self->{api_method} = $options->{method};
+    $self->{api_args}   = $options->{args};
+    $self->{rest_uri}   = $options->{rest_uri}
+      || 'http://api.flickr.com/services/rest/';
 
-	bless $self, $class;
+    bless $self, $class;
 
-    $self->{api_args}->{format} = 'json';
+    $self->{api_args}->{format}         = 'json';
     $self->{api_args}->{nojsoncallback} = 1;
 
-	$self->method('POST');
-        $self->uri($self->{rest_uri});
+    $self->method('POST');
+    $self->uri( $self->{rest_uri} );
 
-	return $self;
+    return $self;
 }
 
 sub encode_args {
-	my ($self) = @_;
+    my ($self) = @_;
 
-	my $url = URI->new('http:');
-	$url->query_form(%{$self->{api_args}});
-	my $content = $url->query;
+    my $url = URI->new('http:');
+    $url->query_form( %{ $self->{api_args} } );
+    my $content = $url->query;
 
-	$self->header('Content-Type' => 'application/x-www-form-urlencoded');
-	if (defined($content)) {
-		$self->header('Content-Length' => length($content));
-		$self->content($content);
-	}
+    $self->header( 'Content-Type' => 'application/x-www-form-urlencoded' );
+    if ( defined($content) ) {
+        $self->header( 'Content-Length' => length($content) );
+        $self->content($content);
+    }
 }
 
 1;
