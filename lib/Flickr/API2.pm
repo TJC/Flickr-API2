@@ -18,8 +18,8 @@ sub new {
 	my $self = new LWP::UserAgent;
 	$self->{api_key}	= $options->{key};
 	$self->{api_secret}	= $options->{secret};
-	$self->{rest_uri}	= $options->{rest_uri} || 'http://www.flickr.com/services/rest/';
-	$self->{auth_uri}	= $options->{auth_uri} || 'http://www.flickr.com/services/auth/';
+	$self->{rest_uri}	= $options->{rest_uri} || 'http://api.flickr.com/services/rest/';
+	$self->{auth_uri}	= $options->{auth_uri} || 'http://api.flickr.com/services/auth/';
 
 	eval {
 		require Compress::Zlib;
