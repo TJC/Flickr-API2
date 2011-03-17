@@ -1,4 +1,4 @@
-package Flickr::API::Request;
+package Flickr::API2::Request;
 
 use strict;
 use warnings;
@@ -44,16 +44,16 @@ __END__
 
 =head1 NAME
 
-Flickr::API::Request - A request to the Flickr API
+Flickr::API2::Request - A request to the Flickr API
 
 =head1 SYNOPSIS
 
-  use Flickr::API;
-  use Flickr::API::Request;
+  use Flickr::API2;
+  use Flickr::API2::Request;
 
-  my $api = new Flickr::API({'key' => 'your_api_key'});
+  my $api = new Flickr::API2({'key' => 'your_api_key'});
 
-  my $request = new Flickr::API::Request({
+  my $request = new Flickr::API2::Request({
   	'method' => $method,
   	'args' => {},
   }); 
@@ -65,19 +65,20 @@ Flickr::API::Request - A request to the Flickr API
 
 This object encapsulates a request to the Flickr API.
 
-C<Flickr::API::Request> is a subclass of C<HTTP::Request>, so you can access
+C<Flickr::API2::Request> is a subclass of C<HTTP::Request>, so you can access
 any of the request parameters and tweak them yourself. The content, content-type
 header and content-length header are all built from the 'args' list by the
-C<Flickr::API::execute_request()> method.
+C<Flickr::API2::execute_request()> method.
 
 
 =head1 AUTHOR
 
-Copyright (C) 2004, Cal Henderson, E<lt>cal@iamcal.comE<gt>
+Version 2.xx copyright 2011 Toby Corkindale, tjc@cpan.org
 
+Original version 1.xx copyright (C) 2004-2005, Cal Henderson, E<lt>cal@iamcal.comE<gt>
 
 =head1 SEE ALSO
 
-L<Flickr::API>.
+L<Flickr::API2>.
 
 =cut

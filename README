@@ -1,8 +1,9 @@
-Flickr::API
-===========
+Flickr::API2
+============
 
-Simple interface to the Flickr API.
+Perl interface to the Flickr API.
 
+This module is based on Flickr::API by Cal Henderson, forked and updated.
 
 INSTALLATION
 
@@ -18,7 +19,6 @@ DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-  XML::Parser::Lite::Tree
   LWP::UserAgent
   Digest::MD5
   HTTP::Request
@@ -29,5 +29,8 @@ This module requires these other modules and libraries:
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2004-2009 Cal Henderson <cal@iamcal.com>
+Version 2.00 Copyright (C) 2011 Toby Corkindale <tjc@cpan.org>
+
+Original version 1.xx Copyright (C) 2004-2009 Cal Henderson <cal@iamcal.com>
+
 License: Perl Artistic License 2.0

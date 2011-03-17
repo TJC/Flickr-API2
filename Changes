@@ -1,20 +1,5 @@
-Changes to Flickr::API
+Changes to Flickr::API2
 
-0.10, 2008-09-29
- * Work correctly with latest XML::Parser::Lite::Tree (now requires 0.06)
- * Added patch from Flavio Poletti to allow custom api & auth urls
+2.00  2011-03-xx
+    * Initial version after forking Flickr::API 1.04
 
-1.01, 2008-09-30
- * incorrectly numbered the previous release. gah
- * updated tests to work when the flickr api isn't hit-able
-
-1.02, 2009-07-31
- * license update for fedora
-
-1.03, 2009-08-23
- * fix for perl5.6 - when HTTP::Message->decoded_content() comes back empty,
-   use content() instead.
-
-1.04, 2009-08-25
- * re-fix for perl5.6 - just require a newer version of HTTP::Message which supports
-   mime-decoding instead.

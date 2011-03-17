@@ -1,7 +1,7 @@
 use Test::More;
 BEGIN { plan tests => 17 };
 
-BEGIN { use_ok( 'Flickr::API' ); }
+BEGIN { use_ok( 'Flickr::API2' ); }
 
 
 ##################################################

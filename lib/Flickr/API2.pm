@@ -1,11 +1,11 @@
-package Flickr::API;
+package Flickr::API2;
 
 use strict;
 use warnings;
 use LWP::UserAgent;
 use XML::Parser::Lite::Tree;
-use Flickr::API::Request;
-use Flickr::API::Response;
+use Flickr::API2::Request;
+use Flickr::API2::Response;
 use Digest::MD5 qw(md5_hex);
 
 our @ISA = qw(LWP::UserAgent);
@@ -76,7 +76,7 @@ sub request_auth_url {
 sub execute_method {
 	my ($self, $method, $args) = @_;
 
-	my $request = new Flickr::API::Request({'method' => $method, 'args' => $args, rest_uri => $self->{rest_uri}});
+	my $request = new Flickr::API2::Request({'method' => $method, 'args' => $args, rest_uri => $self->{rest_uri}});
 
 	$self->execute_request($request);
 }
@@ -96,7 +96,7 @@ sub execute_request {
 
 
 	my $response = $self->request($request);
-	bless $response, 'Flickr::API::Response';
+	bless $response, 'Flickr::API2::Response';
 	$response->init_flickr();
 
 	if ($response->{_rc} != 200){
@@ -148,13 +148,13 @@ __END__
 
 =head1 NAME
 
-Flickr::API - Perl interface to the Flickr API
+Flickr::API2 - Perl interface to the Flickr API
 
 =head1 SYNOPSIS
 
-  use Flickr::API;
+  use Flickr::API2;
 
-  my $api = new Flickr::API({'key'    => 'your_api_key',
+  my $api = new Flickr::API2({'key'    => 'your_api_key',
                              'secret' => 'your_app_secret'});
 
   my $response = $api->execute_method('flickr.test.echo', {
@@ -164,12 +164,12 @@ Flickr::API - Perl interface to the Flickr API
 
 or
 
-  use Flickr::API;
-  use Flickr::API::Request;
+  use Flickr::API2;
+  use Flickr::API2::Request;
 
-  my $api = new Flickr::API({'key' => 'your_api_key'});
+  my $api = new Flickr::API2({'key' => 'your_api_key'});
 
-  my $request = new Flickr::API::Request({
+  my $request = new Flickr::API2::Request({
 		'method' => 'flickr.test.echo',
 		'args' => {},
 	});
@@ -181,7 +181,7 @@ or
 
 A simple interface for using the Flickr API.
 
-C<Flickr::API> is a subclass of L<LWP::UserAgent>, so all of the various
+C<Flickr::API2> is a subclass of L<LWP::UserAgent>, so all of the various
 proxy, request limits, caching, etc are available.
 
 =head2 METHODS
@@ -190,12 +190,12 @@ proxy, request limits, caching, etc are available.
 
 =item C<execute_method($method, $args)>
 
-Constructs a C<Flickr::API::Request> object and executes it, returning a C<Flickr::API::Response> object.
+Constructs a C<Flickr::API2::Request> object and executes it, returning a C<Flickr::API2::Response> object.
 
 =item C<execute_request($request)>
 
-Executes a C<Flickr::API::Request> object, returning a C<Flickr::API::Response> object. Calls are signed
-if a secret was specified when creating the C<Flickr::API> object.
+Executes a C<Flickr::API2::Request> object, returning a C<Flickr::API2::Response> object. Calls are signed
+if a secret was specified when creating the C<Flickr::API2> object.
 
 =item C<request_auth_url($perms,$frob)>
 
@@ -204,7 +204,7 @@ an authentication token.
 
 For web-based applications I<$frob> is an optional parameter.
 
-Returns undef if a secret was not specified when creating the C<Flickr::API> object.
+Returns undef if a secret was not specified when creating the C<Flickr::API2> object.
 
 
 =back
@@ -212,15 +212,17 @@ Returns undef if a secret was not specified when creating the C<Flickr::API> obj
 
 =head1 AUTHOR
 
-Copyright (C) 2004-2005, Cal Henderson, E<lt>cal@iamcal.comE<gt>
+Version 2.xx copyright 2011 Toby Corkindale, tjc@cpan.org
+
+Original version 1.xx copyright (C) 2004-2005, Cal Henderson, E<lt>cal@iamcal.comE<gt>
 
 Auth API patches provided by Aaron Straup Cope
 
 
 =head1 SEE ALSO
 
-L<Flickr::API::Request>,
-L<Flickr::API::Response>,
+L<Flickr::API2::Request>,
+L<Flickr::API2::Response>,
 L<XML::Parser::Lite>,
 L<http://www.flickr.com/>,
 L<http://www.flickr.com/services/api/>
