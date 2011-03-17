@@ -1,0 +1,6 @@
+*.pm text
+*.pl text
+*.t text
+README text
+Makefile.PL text
+Changes text
