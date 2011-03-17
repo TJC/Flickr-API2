@@ -5,8 +5,8 @@ use warnings;
 use HTTP::Request;
 use URI;
 
-our @ISA     = qw(HTTP::Request);
-our $VERSION = '0.03';
+use parent qw(HTTP::Request);
+our $VERSION = '2.00';
 
 sub new {
     my $class   = shift;

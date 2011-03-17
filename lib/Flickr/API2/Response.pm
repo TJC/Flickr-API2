@@ -4,9 +4,8 @@ use strict;
 use warnings;
 use HTTP::Response;
 
-our @ISA = qw(HTTP::Response);
-
-our $VERSION = '0.02';
+use parent qw(HTTP::Response);
+our $VERSION = '2.00';
 
 sub new {
     my $class   = shift;
