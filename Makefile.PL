@@ -14,6 +14,7 @@ requires 'HTTP::Response';
 requires 'HTTP::Message' => 1.56;
 requires 'URI' => 1.18;
 requires 'Digest::MD5';
+requires 'Compress::Zlib';
 
 auto_install;
 

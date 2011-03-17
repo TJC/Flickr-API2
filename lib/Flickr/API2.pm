@@ -7,6 +7,7 @@ use JSON qw(decode_json);
 use Flickr::API2::Request;
 use Flickr::API2::Response;
 use Digest::MD5 qw(md5_hex);
+use Compress::Zlib;
 
 use parent qw(LWP::UserAgent);
 
@@ -23,11 +24,7 @@ sub new {
     $self->{auth_uri} = $options->{auth_uri}
       || 'http://api.flickr.com/services/auth/';
 
-    eval {
-        require Compress::Zlib;
-
-        $self->default_header( 'Accept-Encoding' => 'gzip' );
-    };
+    $self->default_header( 'Accept-Encoding' => 'gzip' );
 
     warn "You must pass an API key to the constructor"
       unless defined $self->{api_key};
