@@ -129,7 +129,11 @@ sub execute_request {
         return $response;
     }
 
-    $response->set_fail( 0, "API returned an invalid status code" );
+    $response->set_fail(
+        $json->{code},
+        $json->{message}
+    );
+
     return $response;
 }
 
