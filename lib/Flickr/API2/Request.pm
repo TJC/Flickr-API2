@@ -14,7 +14,7 @@ sub new {
 	my $self = new HTTP::Request;
 	$self->{api_method}	= $options->{method};
 	$self->{api_args}	= $options->{args};
-	$self->{rest_uri}	= $options->{rest_uri} || 'http://www.flickr.com/services/rest/';
+	$self->{rest_uri}	= $options->{rest_uri} || 'http://api.flickr.com/services/rest/';
 
 	bless $self, $class;
 
