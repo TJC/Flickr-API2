@@ -1,12 +1,11 @@
+#!perl
 use Test::More;
-BEGIN { plan tests => 17 }
 
-BEGIN { use_ok('Flickr::API2'); }
+use_ok('Flickr::API2');
 
-##################################################
-#
+# TODO: Skip online tests if we can't contact the Flickr::API..
+
 # create an api object
-#
 
 my $api = new Flickr::API2(
     {
@@ -16,35 +15,26 @@ my $api = new Flickr::API2(
 );
 my $rsp = $api->execute_method( 'fake.method', {} );
 
-##################################################
-#
 # check we get the 'method not found' error
-#
 
-if ( $rsp->{_rc} eq '200' ) {
+# this error code may change in future!
+is( $rsp->{error_code}, 112,
+    'checking the error code for "method not found"' );
 
-    # this error code may change in future!
-    is( $rsp->{error_code}, 112,
-        'checking the error code for "method not found"' );
-}
-else {
-    is( 1, 1, "skipping error code check, since we couldn't reach the API" );
-}
+like( $rsp->{error_message}, qr/Method "fake.method" not found/,
+    "Saw message about fake.method not existing" );
 
-##################################################
-#
-# check the 'format not found' error is working
-#
 
-$rsp = $api->execute_method( 'flickr.test.echo', { format => 'fake' } );
+# check the API-key-is-not-valid error
 
-if ( $rsp->{_rc} eq '200' ) {
-    is( $rsp->{error_code}, 111,
-        'checking the error code for "format not found"' );
-}
-else {
-    is( 1, 1, "skipping error code check, since we couldn't reach the API" );
-}
+$rsp = $api->execute_method( 'flickr.test.echo' );
+
+is( $rsp->{error_code}, 100,
+    'checking the error code for "invalid api key"' );
+
+like( $rsp->{error_message}, qr/Invalid API Key/,
+    "Saw message about invalid API key" );
+
 
 ##################################################
 #
@@ -90,7 +80,7 @@ foreach my $item ( keys %got ) {
 }
 
 ok( $uri->path   eq '/services/auth/', "Checking correct return path" );
-ok( $uri->host   eq 'www.flickr.com',  "Checking return domain" );
+ok( $uri->host   eq 'api.flickr.com',  "Checking return domain" );
 ok( $uri->scheme eq 'http',            "Checking return protocol" );
 
 ##################################################
@@ -103,3 +93,4 @@ $uri = $api->request_auth_url( 'r', 'frob' );
 
 ok( !defined $uri, "Checking URL generation without a secret" );
 
+done_testing();
