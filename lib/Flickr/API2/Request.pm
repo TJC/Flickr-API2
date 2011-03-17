@@ -18,6 +18,9 @@ sub new {
 
 	bless $self, $class;
 
+    $self->{api_args}->{format} = 'json';
+    $self->{api_args}->{nojsoncallback} = 1;
+
 	$self->method('POST');
         $self->uri($self->{rest_uri});
 

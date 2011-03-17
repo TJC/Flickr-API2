@@ -3,12 +3,12 @@ package Flickr::API2;
 use strict;
 use warnings;
 use LWP::UserAgent;
-use XML::Parser::Lite::Tree;
+use JSON qw(decode_json);
 use Flickr::API2::Request;
 use Flickr::API2::Response;
 use Digest::MD5 qw(md5_hex);
 
-our @ISA = qw(LWP::UserAgent);
+use parent qw(LWP::UserAgent);
 
 our $VERSION = '1.04';
 
@@ -76,7 +76,13 @@ sub request_auth_url {
 sub execute_method {
 	my ($self, $method, $args) = @_;
 
-	my $request = new Flickr::API2::Request({'method' => $method, 'args' => $args, rest_uri => $self->{rest_uri}});
+    my $request = new Flickr::API2::Request(
+        {
+            method => $method,
+            args => $args,
+            rest_uri => $self->{rest_uri}
+        }
+    );
 
 	$self->execute_request($request);
 }
@@ -107,40 +113,19 @@ sub execute_request {
 	my $content = $response->decoded_content();
 	$content = $response->content() unless defined $content;
 
-	my $tree = XML::Parser::Lite::Tree::instance()->parse($content);
+    my $json = eval { decode_json($content) };
+    if ($@) {
+        $response->set_fail(0, "Invalid API response: $@");
+        return $response;
+    }
 
-	my $rsp_node = $self->_find_tag($tree->{children});
+    if ($json->{stat} eq 'ok') {
+        $response->set_ok($json);
+        return $response;
+    }
 
-	if ($rsp_node->{name} ne 'rsp'){
-		$response->set_fail(0, "API returned an invalid response");
-		return $response;
-	}
-
-	if ($rsp_node->{attributes}->{stat} eq 'fail'){
-		my $fail_node = $self->_find_tag($rsp_node->{children});
-		if ($fail_node->{name} eq 'err'){
-			$response->set_fail($fail_node->{attributes}->{code}, $fail_node->{attributes}->{msg});
-		}else{
-			$response->set_fail(0, "Method failed but returned no error code");
-		}
-		return $response;
-	}
-
-	if ($rsp_node->{attributes}->{stat} eq 'ok'){
-		$response->set_ok($rsp_node);
-		return $response;
-	}
-
-	$response->set_fail(0, "API returned an invalid status code");
-	return $response;
-}
-
-sub _find_tag {
-	my ($self, $children) = @_;
-	for my $child(@{$children}){
-		return $child if $child->{type} eq 'element';
-	}
-	return {};
+    $response->set_fail(0, "API returned an invalid status code");
+    return $response;
 }
 
 1;
