@@ -1,9 +1,12 @@
-lib/Flickr/API.pm
-lib/Flickr/API/Request.pm
-lib/Flickr/API/Response.pm
-Makefile.PL
-MANIFEST
-README
-test.pl
 Changes
-META.yml                                 Module meta-data (added by MakeMaker)
+lib/Flickr/API2.pm
+lib/Flickr/API2/Request.pm
+lib/Flickr/API2/Response.pm
+Makefile.PL
+README
+t/00-load.t
+t/flickr-api.t
+t/manifest.t
+t/pod-coverage.t
+t/pod.t
+MANIFEST			This list of files
