@@ -1,16 +1,19 @@
-use ExtUtils::MakeMaker;
+use inc::Module::Install;
 
-WriteMakefile(
-    'NAME'		=> 'Flickr::API',
-    'VERSION_FROM'	=> 'lib/Flickr/API.pm',
-    'PREREQ_PM'		=> {
-		'LWP::UserAgent' => 0,
-		'HTTP::Request' => 0,
-		'HTTP::Response' => 0,
-		'HTTP::Message' => 1.56, # first version of libwww that supports decoded_content()
-		'URI' => 1.18,
-		'XML::Parser::Lite::Tree' => 0.06,
-		'Digest::MD5' => 0,
-		'Test::More' => 0,
-	},
-);
+name     'Flickr-API2';
+all_from 'lib/Flickr/API2.pm';
+author   q{Toby Corkindale <tjc@cpan.org>};
+license  'perl';
+
+build_requires 'Test::More';
+
+requires 'LWP::UserAgent';
+requires 'HTTP::Request';
+requires 'HTTP::Response';
+requires 'HTTP::Message' => 1.56;
+requires 'URI' => 1.18;
+requires 'Digest::MD5';
+
+auto_install;
+
+WriteAll;
