@@ -1,0 +1,20 @@
+--- #YAML:1.0
+name:                Flickr-API
+version:             1.04
+abstract:            ~
+license:             ~
+author:              ~
+generated_by:        ExtUtils::MakeMaker version 6.42
+distribution_type:   module
+requires:     
+    Digest::MD5:                   0
+    HTTP::Message:                 1.56
+    HTTP::Request:                 0
+    HTTP::Response:                0
+    LWP::UserAgent:                0
+    Test::More:                    0
+    URI:                           1.18
+    XML::Parser::Lite::Tree:       0.06
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
+    version: 1.3
