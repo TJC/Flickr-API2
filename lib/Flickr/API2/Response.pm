@@ -7,22 +7,6 @@ use HTTP::Response;
 use parent qw(HTTP::Response);
 our $VERSION = '2.00';
 
-sub new {
-    my $class   = shift;
-    my $self    = new HTTP::Response;
-    my $options = shift;
-    bless $self, $class;
-    return $self;
-}
-
-sub init_flickr {
-    my ( $self, $options ) = @_;
-    $self->{tree}          = undef;
-    $self->{success}       = 0;
-    $self->{error_code}    = 0;
-    $self->{error_message} = '';
-}
-
 sub set_fail {
     my ( $self, $code, $message ) = @_;
     $self->{success}       = 0;
@@ -33,6 +17,8 @@ sub set_fail {
 sub set_ok {
     my ( $self, $tree ) = @_;
     $self->{success} = 1;
+    $self->{error_code}    = 0;
+    $self->{error_message} = '';
     $self->{tree}    = $tree;
 }
 
@@ -66,7 +52,7 @@ keys:
 
   {
 	'success' => 1,
-	'tree' => XML::Parser::Lite::Tree,
+	'tree' => { json ... data },
 	'error_code' => 0,
 	'error_message' => '',
   }
@@ -78,7 +64,7 @@ object, which is a subclass of C<HTTP:Request>.
 The C<sucess> key contains 1 or 0, indicating
 whether the request suceeded. If it failed, C<error_code> and
 C<error_message> explain what went wrong. If it suceeded, C<tree>
-contains an C<XML::Parser::Lite::Tree> object of the response XML.
+contains a big tree of the response data.
 
 
 =head1 AUTHOR

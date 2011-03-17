@@ -103,8 +103,8 @@ sub execute_request {
     $request->encode_args();
 
     my $response = $self->request($request);
+    # XXX: I really, really want to get rid of this re-blessing..
     bless $response, 'Flickr::API2::Response';
-    $response->init_flickr();
 
     if ( $response->{_rc} != 200 ) {
         $response->set_fail( 0,
