@@ -5,6 +5,20 @@ Perl interface to the Flickr API.
 
 This module is based on Flickr::API by Cal Henderson, forked and updated.
 
+Changes from Version 1:
+
+ * Update API URLs to api.flickr.com
+ * Remove XML libraries
+ * Return Perl structure
+ * Use JSON API at Flickr
+ * Update inheritance methods
+
+Still to change:
+
+ * Hand back better data structures
+ * Throw exceptions when deserved rather than return half-arsed structs
+ * Separate response object from HTTP::Response object.
+
 INSTALLATION
 
 To install this module type the following:
