@@ -5,6 +5,8 @@ use warnings;
 use LWP::UserAgent;
 use JSON qw(decode_json);
 use Flickr::API2::Request;
+use Flickr::API2::Photos;
+use Flickr::API2::Test;
 use Digest::MD5 qw(md5_hex);
 use Compress::Zlib;
 
@@ -123,6 +125,14 @@ sub execute_request {
     die(sprintf("API call failed: \%s (\%s)\n",
                 $json->{message}, $json->{code})
     );
+}
+
+sub photos {
+    Flickr::API2::Photos->new( api => shift );
+}
+
+sub test {
+    Flickr::API2::Test->new( api => shift );
 }
 
 1;
