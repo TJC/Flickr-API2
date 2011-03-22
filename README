@@ -15,12 +15,15 @@ Changes from Version 1:
  * Fix dependencies
  * Use Module::Install instead of ExtUtils::MakeMaker
  * Add unit tests
+ * Throw exceptions when deserved rather than return a hash containing
+   a "not ok" field in it.
+ * Remove the subclassed HTTP::Response object as your main returned item.
+ * Some initial helper methods to directly access photos/searches.
 
 Still to change:
 
  * Hand back better data structures
- * Throw exceptions when deserved rather than return half-arsed structs
- * Separate response object from HTTP::Response object.
+ * More helper methods.
 
 INSTALLATION
 
