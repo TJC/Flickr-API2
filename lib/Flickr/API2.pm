@@ -198,6 +198,15 @@ For web-based applications I<$frob> is an optional parameter.
 
 Returns undef if a secret was not specified when creating the C<Flickr::API2> object.
 
+=item C<photos>
+
+Returns a Flickr::API2::Photos object, which can be used to perform various
+searches and stuff.
+
+=item C<test>
+
+Returns a Flickr::API2::Test object, which allows test-related API calls to be
+performed.
 
 =back
 

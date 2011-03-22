@@ -9,12 +9,22 @@ Search for photos, for eg:
 
 my @photos = $flickr->photos->search(tags => 'kitten,pony');
 
+For parameters, see:
+
+http://www.flickr.com/services/api/flickr.photos.search.html
+
+This returns an array of Flickr::API2::Photo objects.
+
 =cut
 
 sub search {
     my $self = shift;
     my %args = @_;
-    $args{extras} ||= 'date_upload,date_taken,owner_name,url_s,url_m,url_l';
+    $args{extras} ||= join(',',
+        qw(
+            date_upload date_taken owner_name url_s url_m url_l path_alias
+        )
+    );
 
     my $r = $self->api->execute_method(
         'flickr.photos.search', \%args
@@ -33,6 +43,7 @@ sub search {
             url_s => $_->{url_s},
             url_m => $_->{url_m},
             url_l => $_->{url_l},
+            path_alias => $_->{path_alias},
         )
     } @{ $r->{photos}->{photo} };
 
