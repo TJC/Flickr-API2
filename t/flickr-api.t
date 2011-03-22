@@ -1,5 +1,6 @@
 #!perl
 use Test::More;
+use Test::Exception;
 
 use_ok('Flickr::API2');
 
@@ -13,27 +14,16 @@ my $api = new Flickr::API2(
         'secret' => 'my_secret',
     }
 );
-my $rsp = $api->execute_method( 'fake.method', {} );
 
 # check we get the 'method not found' error
-
-# this error code may change in future!
-is( $rsp->{error_code}, 112,
-    'checking the error code for "method not found"' );
-
-like( $rsp->{error_message}, qr/Method "fake.method" not found/,
-    "Saw message about fake.method not existing" );
-
+throws_ok {
+    $api->execute_method( 'fake.method', {} );
+} qr/method .+ not found/i, 'Correct error for method not found';
 
 # check the API-key-is-not-valid error
-
+throws_ok {
 $rsp = $api->execute_method( 'flickr.test.echo' );
-
-is( $rsp->{error_code}, 100,
-    'checking the error code for "invalid api key"' );
-
-like( $rsp->{error_message}, qr/Invalid API Key/,
-    "Saw message about invalid API key" );
+} qr/Invalid API Key/i, 'Correct error for invalid api key';
 
 
 ##################################################

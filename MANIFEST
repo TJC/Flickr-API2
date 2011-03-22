@@ -1,7 +1,6 @@
 Changes
 lib/Flickr/API2.pm
 lib/Flickr/API2/Request.pm
-lib/Flickr/API2/Response.pm
 Makefile.PL
 README
 t/00-load.t

@@ -5,7 +5,6 @@ use warnings;
 use LWP::UserAgent;
 use JSON qw(decode_json);
 use Flickr::API2::Request;
-use Flickr::API2::Response;
 use Digest::MD5 qw(md5_hex);
 use Compress::Zlib;
 
@@ -103,35 +102,27 @@ sub execute_request {
     $request->encode_args();
 
     my $response = $self->request($request);
-    # XXX: I really, really want to get rid of this re-blessing..
-    bless $response, 'Flickr::API2::Response';
 
-    if ( $response->{_rc} != 200 ) {
-        $response->set_fail( 0,
-            "API returned a non-200 status code ($response->{_rc})" );
-        return $response;
-    }
+    die("API returned a non-200 status code: " . $response->{_rc} . "\n")
+        unless $response->{_rc} == 200;
 
     my $content = $response->decoded_content();
     $content = $response->content() unless defined $content;
 
     my $json = eval { decode_json($content) };
     if ($@) {
-        $response->set_fail( 0, "Invalid API response: $@" );
-        return $response;
+        die("Failed to parse API response as JSON: $@\n");
     }
 
     if ( $json->{stat} eq 'ok' ) {
-        $response->set_ok($json);
-        return $response;
+        return $json;
+        # Do we still care about returning the $response somehow?
+        # It doesn't have much of interest at this stage, I think.
     }
 
-    $response->set_fail(
-        $json->{code},
-        $json->{message}
+    die(sprintf("API call failed: \%s (\%s)\n",
+                $json->{message}, $json->{code})
     );
-
-    return $response;
 }
 
 1;
