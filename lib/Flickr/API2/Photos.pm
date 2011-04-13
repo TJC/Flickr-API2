@@ -39,6 +39,7 @@ sub search {
             title => $_->{title},
             date_upload => $_->{date_upload},
             date_taken => $_->{date_taken},
+            owner_id => $_->{owner},
             owner_name => $_->{owner_name},
             url_s => $_->{url_s},
             url_m => $_->{url_m},

@@ -32,10 +32,10 @@ has 'id' => (
     is => 'ro',
     required => 1,
 );
-
 has 'title' => ( is => 'rw' );
 has 'date_upload' => ( is => 'rw' );
 has 'date_taken' => ( is => 'rw' );
+has 'owner_id' => ( is => 'rw' );
 has 'owner_name' => ( is => 'rw' );
 has 'url_s' => ( is => 'rw' );
 has 'url_m' => ( is => 'rw' );
@@ -70,7 +70,7 @@ sub sizes {
 sub page_url {
     my $self = shift;
     return sprintf('http://flickr.com/photos/%s/%d',
-        ($self->path_alias || $self->owner_name),
+        ($self->path_alias || $self->owner_name || $self->owner_id),
         $self->id
     );
 }
