@@ -1,5 +1,4 @@
 package Flickr::API2;
-
 use strict;
 use warnings;
 use Flickr::API2::Request;
@@ -95,6 +94,25 @@ Flickr::API2 - Perl interface to the Flickr API
 
 A simple interface for using the Flickr API.
 
+The API calls are made via Perl helper methods, and the data returned is
+converted into Perl objects that can have further methods called upon them.
+
+So for instance, you can fetch a user by username, by:
+
+  my $user = $api->people->findByUsername('wintrmute')
+
+You can then ask for photos by that user, by calling:
+
+  my @photos = $user->getPublicPhotos;
+
+And from there, you can query titles, URLs, etc of the photos with methods
+such as:
+
+  $photos[0]->title
+
+So far only a few helper methods have been written, but more are coming.
+Patches adding functionality will be greatly appreciated!
+
 =head2 METHODS
 
 =over 4
@@ -115,22 +133,22 @@ response. Exceptions will be thrown if the request fails.
 =item C<photos>
 
 Returns a Flickr::API2::Photos object, which can be used to perform various
-searches and stuff.
+searches and stuff. See its docs for more info.
 
 =item C<people>
 
 Returns a Flickr::API2::People object, which can be used to perform various
-searches and stuff.
+searches and stuff. See its docs for more info.
 
 =item C<interestingness>
 
 Returns a Flickr::API2::Interestingness object, which can be used to perform
-various searches and stuff.
+various searches and stuff. See its docs for more info.
 
 =item C<raw>
 
 Returns a Flickr::API2::Raw object, which allows low-level Flickr API calls to
-be performed.
+be performed. See its docs for more info.
 
 =item C<test>
 

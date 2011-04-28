@@ -20,10 +20,9 @@ Changes from Version 1:
  * Remove the subclassed HTTP::Response object as your main returned item.
  * Some initial helper methods to directly access photos/searches.
 
-Still to change:
+Still to come:
 
- * Hand back better data structures
- * More helper methods.
+ * More helper methods and classes.
 
 INSTALLATION
 
@@ -45,7 +44,6 @@ This module requires these other modules and libraries:
   HTTP::Response
   URI
   Test::More
-
 
 COPYRIGHT AND LICENCE
 
