@@ -157,6 +157,11 @@ performed.
 
 =back
 
+=head1 REPOSITORY
+
+Development is on-going at:
+https://github.com/TJC/Flickr-API2
+
 =head1 AUTHOR
 
 Version 2.xx copyright 2011 Toby Corkindale, tjc@cpan.org
