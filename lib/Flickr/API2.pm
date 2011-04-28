@@ -5,6 +5,7 @@ use warnings;
 use Flickr::API2::Request;
 use Flickr::API2::Photos;
 use Flickr::API2::Test;
+use Flickr::API2::Interestingness;
 use Flickr::API2::Raw;
 
 our $VERSION = '2.00';
@@ -49,6 +50,10 @@ sub photos {
 
 sub test {
     Flickr::API2::Test->new( api => shift );
+}
+
+sub interestingness {
+    Flickr::API2::Interestingness->new( api => shift );
 }
 
 1;
