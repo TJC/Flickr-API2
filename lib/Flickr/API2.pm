@@ -2,77 +2,27 @@ package Flickr::API2;
 
 use strict;
 use warnings;
-use LWP::UserAgent;
-use JSON qw(decode_json);
 use Flickr::API2::Request;
 use Flickr::API2::Photos;
 use Flickr::API2::Test;
-use Digest::MD5 qw(md5_hex);
-use Compress::Zlib;
-
-use parent qw(LWP::UserAgent);
+use Flickr::API2::Raw;
 
 our $VERSION = '2.00';
 
 sub new {
     my $class   = shift;
     my $options = shift;
-    my $self    = new LWP::UserAgent;
-    $self->{api_key}    = $options->{key};
-    $self->{api_secret} = $options->{secret};
-    $self->{rest_uri}   = $options->{rest_uri}
-      || 'http://api.flickr.com/services/rest/';
-    $self->{auth_uri} = $options->{auth_uri}
-      || 'http://api.flickr.com/services/auth/';
 
-    $self->default_header( 'Accept-Encoding' => 'gzip' );
+    die "You must supply an API key and secret to the constructor"
+      unless $options->{key} and $options->{secret};
 
-    warn "You must pass an API key to the constructor"
-      unless defined $self->{api_key};
+    my $self = {
+        _raw => Flickr::API2::Raw->new($options),
+        rest_uri => $options->{rest_uri}
+          || 'http://api.flickr.com/services/rest/',
+    };
 
     bless $self, $class;
-    return $self;
-}
-
-sub sign_args {
-    my $self = shift;
-    my $args = shift;
-
-    my $sig = $self->{api_secret};
-
-    foreach my $key ( sort { $a cmp $b } keys %{$args} ) {
-
-        my $value = ( defined( $args->{$key} ) ) ? $args->{$key} : "";
-        $sig .= $key . $value;
-    }
-
-    return md5_hex($sig);
-}
-
-sub request_auth_url {
-    my $self  = shift;
-    my $perms = shift;
-    my $frob  = shift;
-
-    return undef
-      unless defined $self->{api_secret} && length $self->{api_secret};
-
-    my %args = (
-        'api_key' => $self->{api_key},
-        'perms'   => $perms
-    );
-
-    if ($frob) {
-        $args{frob} = $frob;
-    }
-
-    my $sig = $self->sign_args( \%args );
-    $args{api_sig} = $sig;
-
-    my $uri = URI->new( $self->{auth_uri} );
-    $uri->query_form(%args);
-
-    return $uri;
 }
 
 sub execute_method {
@@ -86,45 +36,11 @@ sub execute_method {
         }
     );
 
-    $self->execute_request($request);
+    $self->raw->execute_request($request);
 }
 
-sub execute_request {
-    my ( $self, $request ) = @_;
-
-    $request->{api_args}->{method}  = $request->{api_method};
-    $request->{api_args}->{api_key} = $self->{api_key};
-
-    if ( defined( $self->{api_secret} ) && length( $self->{api_secret} ) ) {
-
-        $request->{api_args}->{api_sig} =
-          $self->sign_args( $request->{api_args} );
-    }
-
-    $request->encode_args();
-
-    my $response = $self->request($request);
-
-    die("API returned a non-200 status code: " . $response->{_rc} . "\n")
-        unless $response->{_rc} == 200;
-
-    my $content = $response->decoded_content();
-    $content = $response->content() unless defined $content;
-
-    my $json = eval { decode_json($content) };
-    if ($@) {
-        die("Failed to parse API response as JSON: $@\n");
-    }
-
-    if ( $json->{stat} eq 'ok' ) {
-        return $json;
-        # Do we still care about returning the $response somehow?
-        # It doesn't have much of interest at this stage, I think.
-    }
-
-    die(sprintf("API call failed: \%s (\%s)\n",
-                $json->{message}, $json->{code})
-    );
+sub raw {
+    shift->{_raw};
 }
 
 sub photos {
