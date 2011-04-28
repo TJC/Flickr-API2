@@ -74,6 +74,19 @@ any of the request parameters and tweak them yourself. The content, content-type
 header and content-length header are all built from the 'args' list by the
 C<Flickr::API2::execute_request()> method.
 
+=head1 METHODS
+
+=head2 new
+
+Constructor - takes parameters of:
+
+  method
+  args
+  rest_uri
+
+=head2 encode_args
+
+Normalises and converts arguments into URL-form-encoded format.
 
 =head1 AUTHOR
 

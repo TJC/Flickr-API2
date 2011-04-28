@@ -99,6 +99,14 @@ A simple interface for using the Flickr API.
 
 =over 4
 
+=item C<new>
+
+Constructor - takes arguments of:
+  key (api key)
+  secret (api key's secret)
+  rest_uri (which URL at flickr to use - defaults to the correct value)
+  auth_uri (which URL at flickr for authentication - defaults to correct value)
+
 =item C<execute_method($method, $args)>
 
 Constructs a C<Flickr::API2::Request> object and executes it, returning the
@@ -118,6 +126,11 @@ searches and stuff.
 
 Returns a Flickr::API2::Interestingness object, which can be used to perform
 various searches and stuff.
+
+=item C<raw>
+
+Returns a Flickr::API2::Raw object, which allows low-level Flickr API calls to
+be performed.
 
 =item C<test>
 

@@ -2,11 +2,36 @@ package Flickr::API2::Base;
 use Mouse;
 use Flickr::API2::Photo;
 
+=head1 NAME
+
+Flickr::API2::Base
+
+=head1 DESCRIPTION
+
+Base class for most of the API-helper classes.
+
+=head1 ATTRIBUTES
+
+=head2 api
+
+A reference to the parent API object.
+
+=cut
+
 has 'api' => (
     is => 'ro',
     isa => 'Flickr::API2',
     required => 1,
 );
+
+=head1 METHODS
+
+=head2 _response_to_photos
+
+Converts an API raw response (containing photo lists) into an array of
+our Photo objects.
+
+=cut
 
 sub _response_to_photos {
     my ($self, $photos) = @_;
