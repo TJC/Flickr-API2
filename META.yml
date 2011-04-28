@@ -1,20 +1,35 @@
---- #YAML:1.0
-name:                Flickr-API
-version:             1.04
-abstract:            ~
-license:             ~
-author:              ~
-generated_by:        ExtUtils::MakeMaker version 6.42
-distribution_type:   module
-requires:     
-    Digest::MD5:                   0
-    HTTP::Message:                 1.56
-    HTTP::Request:                 0
-    HTTP::Response:                0
-    LWP::UserAgent:                0
-    Test::More:                    0
-    URI:                           1.18
-    XML::Parser::Lite::Tree:       0.06
+---
+abstract: 'Perl interface to the Flickr API'
+author:
+  - 'Version 2.xx copyright 2011 Toby Corkindale, tjc@cpan.org'
+  - 'Toby Corkindale <tjc@cpan.org>'
+build_requires:
+  ExtUtils::MakeMaker: 6.42
+  Test::Exception: 0
+  Test::More: 0
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
+distribution_type: module
+generated_by: 'Module::Install version 1.00'
+license: perl
 meta-spec:
-    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
-    version: 1.3
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Flickr-API2
+no_index:
+  directory:
+    - inc
+    - t
+requires:
+  Compress::Zlib: 0
+  Digest::MD5: 0
+  HTTP::Message: 1.56
+  HTTP::Request: 0
+  HTTP::Response: 0
+  LWP::UserAgent: 0
+  Mouse: 0
+  URI: 1.18
+  parent: 0
+resources:
+  license: http://dev.perl.org/licenses/
+version: 2.00
