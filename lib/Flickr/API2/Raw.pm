@@ -67,9 +67,14 @@ sub sign_args {
     return md5_hex($sig);
 }
 
-=head2 request_auth_url
+=head2 request_auth_url ($perms, $frob)
 
-Builds the full URL to be requested from the Flickr API.
+Returns a C<URI> object representing the URL that an application must redirect a user to for approving
+an authentication token.
+
+For web-based applications I<$frob> is an optional parameter.
+
+Returns undef if a secret was not specified when creating the C<Flickr::API2> object.
 
 =cut
 
