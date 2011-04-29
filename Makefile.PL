@@ -17,6 +17,7 @@ requires 'URI' => 1.18;
 requires 'Digest::MD5';
 requires 'Compress::Zlib';
 requires 'Mouse';
+requires 'JSON';
 
 auto_install;
 

@@ -1,5 +1,7 @@
 Changes to Flickr::API2
 
-2.00  2011-03-xx
-    * Initial version after forking Flickr::API 1.04
+2.00  2011-04-28
+    * Initial version, forked from Flickr::API 1.04
 
+2.01  2011-04-29
+    * Added missing dependency upon JSON.
