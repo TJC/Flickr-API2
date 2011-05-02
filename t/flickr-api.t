@@ -62,9 +62,11 @@ throws_ok {
         per_page => 10,
     );
     is(scalar(@photos), 10, "Returned ten photos");
-    ok($photos[0]->id, "First photo has an id");
-    ok($photos[0]->url_s, "First photo has a small URL");
-    ok($photos[0]->page_url, "First photo has a generated page url");
+    isa_ok($photos[0], 'Flickr::API2::Photo') and do {
+        ok($photos[0]->id, "First photo has an id");
+        ok($photos[0]->url_s, "First photo has a small URL");
+        ok($photos[0]->page_url, "First photo has a generated page url");
+    };
 }
 
 # See what the current interesting photo of the day is:
@@ -73,9 +75,11 @@ throws_ok {
         per_page => 3,
     );
     is(scalar(@photos), 3, "Returned three interesting photos");
-    ok($photos[0]->id, "First photo has an id");
-    ok($photos[0]->url_s, "First photo has a small URL");
-    ok($photos[0]->page_url, "First photo has a generated page url");
+    isa_ok($photos[0], 'Flickr::API2::Photo') and do {
+        ok($photos[0]->id, "First photo has an id");
+        ok($photos[0]->url_s, "First photo has a small URL");
+        ok($photos[0]->page_url, "First photo has a generated page url");
+    };
 }
 
 done_testing();
