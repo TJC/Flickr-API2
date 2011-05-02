@@ -5,3 +5,9 @@ Changes to Flickr::API2
 
 2.01  2011-04-29
     * Added missing dependency upon JSON.
+
+2.02  2011-05-02
+    * Skip online API tests unless HTTP access is available.
+    * Adjust Makefile META info regarding Perl versions.
+    * Minor other test improvements.
+    * Use test_requires instead of build_requires in Makefile.
