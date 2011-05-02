@@ -1,12 +1,22 @@
 #!perl
 use strict;
 use warnings;
+use LWP::Online ':skip_all';
+
+# Skip online tests if we can't contact the Flickr::API..
+BEGIN {
+    require Test::More;
+    unless ( LWP::Online::online() ) {
+        Test::More->import(
+            skip_all => 'Test requires a working internet connection'
+        );
+    }
+}
+
 use Test::More;
 use Test::Exception;
 
 use_ok('Flickr::API2') or die;
-
-# TODO: Skip online tests if we can't contact the Flickr::API..
 
 # create an api object without a valid key:
 {

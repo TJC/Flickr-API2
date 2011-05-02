@@ -5,6 +5,7 @@ author:
   - 'Toby Corkindale <tjc@cpan.org>'
 build_requires:
   ExtUtils::MakeMaker: 6.42
+  LWP::Online: 0
   Test::Exception: 0
   Test::More: 0
 configure_requires:

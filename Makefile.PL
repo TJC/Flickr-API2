@@ -7,6 +7,7 @@ license  'perl';
 
 build_requires 'Test::More';
 build_requires 'Test::Exception';
+build_requires 'LWP::Online';
 
 requires 'parent';
 requires 'LWP::UserAgent';
