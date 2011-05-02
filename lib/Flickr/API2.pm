@@ -1,6 +1,7 @@
 package Flickr::API2;
 use strict;
 use warnings;
+use 5.008008; # Earlier versions cause JSON bugs to manifest.
 use Flickr::API2::Request;
 use Flickr::API2::Photos;
 use Flickr::API2::Test;
@@ -8,7 +9,7 @@ use Flickr::API2::Interestingness;
 use Flickr::API2::People;
 use Flickr::API2::Raw;
 
-our $VERSION = '2.01';
+our $VERSION = '2.02';
 
 sub new {
     my $class   = shift;

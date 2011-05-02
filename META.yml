@@ -1,7 +1,6 @@
 ---
-abstract: 'Perl interface to the Flickr API'
+abstract: 'Perl bindings to Flickr API'
 author:
-  - 'Version 2.xx copyright 2011 Toby Corkindale, tjc@cpan.org'
   - 'Toby Corkindale <tjc@cpan.org>'
 build_requires:
   ExtUtils::MakeMaker: 6.42
@@ -21,6 +20,8 @@ no_index:
   directory:
     - inc
     - t
+recommends:
+  JSON::XS: 0
 requires:
   Compress::Zlib: 0
   Digest::MD5: 0
@@ -32,6 +33,7 @@ requires:
   Mouse: 0
   URI: 1.18
   parent: 0
+  perl: 5.8.8
 resources:
   license: http://dev.perl.org/licenses/
-version: 2.01
+version: 2.02

@@ -1,9 +1,11 @@
 use inc::Module::Install;
 
 name     'Flickr-API2';
-all_from 'lib/Flickr/API2.pm';
 author   q{Toby Corkindale <tjc@cpan.org>};
 license  'perl';
+abstract 'Perl bindings to Flickr API';
+perl_version '5.008008';
+all_from 'lib/Flickr/API2.pm';
 
 build_requires 'Test::More';
 build_requires 'Test::Exception';
@@ -19,6 +21,8 @@ requires 'Digest::MD5';
 requires 'Compress::Zlib';
 requires 'Mouse';
 requires 'JSON';
+
+recommends 'JSON::XS';
 
 auto_install;
 
