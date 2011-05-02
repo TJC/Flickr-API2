@@ -7,9 +7,9 @@ abstract 'Perl bindings to Flickr API';
 perl_version '5.008008';
 all_from 'lib/Flickr/API2.pm';
 
-build_requires 'Test::More';
-build_requires 'Test::Exception';
-build_requires 'LWP::Online';
+test_requires 'Test::More';
+test_requires 'Test::Exception';
+test_requires 'LWP::Online';
 
 requires 'parent';
 requires 'LWP::UserAgent';
