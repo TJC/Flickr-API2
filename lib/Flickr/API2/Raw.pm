@@ -5,6 +5,7 @@ use JSON qw(decode_json);
 use Digest::MD5 qw(md5_hex);
 use Compress::Zlib;
 use LWP::UserAgent;
+use Retry;
 use parent qw(LWP::UserAgent);
 
 =head1 NAME
@@ -38,6 +39,8 @@ sub new {
     my $class   = shift;
     my $options = shift;
     my $self    = LWP::UserAgent->new;
+    $self->env_proxy; # Honour proxy settings in the environment.
+    $self->timeout($options->{timeout} || 30); # Timeout after 30 seconds
 
     $self->{api_key}    = $options->{key};
     $self->{api_secret} = $options->{secret};
@@ -123,12 +126,12 @@ sub execute_request {
 
     $request->encode_args();
 
-    my $response = $self->request($request);
+    my $response = $self->do_request($request);
 
-    die("API returned a non-200 status code: " . $response->{_rc} . "\n")
-        unless $response->{_rc} == 200;
+    die("API call failed with HTTP status: " . $response->code . "\n")
+        unless $response->code == 200;
 
-    my $content = $response->decoded_content();
+    my $content = $response->decoded_content;
     $content = $response->content() unless defined $content;
 
     my $json = eval { decode_json($content) };
@@ -145,6 +148,33 @@ sub execute_request {
     die(sprintf("API call failed: \%s (\%s)\n",
                 $json->{message}, $json->{code})
     );
+}
+
+=head2 do_request
+
+Calls LWP::UserAgent's ->request method, but does so within the Retry system,
+in order to catch and retry timeouts.
+
+Added by request.
+
+=cut
+
+sub do_request {
+    my ($self, $request) = @_;
+
+    my $agent = Retry->new(
+        failure_callback => sub {
+            warn "API request failed (will retry): " . $_[0] . "\n"
+        }
+    );
+    my $r;
+    $agent->retry(sub {
+        $r = $self->request($request);
+        if (not $r->is_success and $r->status_line =~ /timeout/) {
+            die("Connection timed out\n");
+        }
+    });
+    return $r;
 }
 
 1;
