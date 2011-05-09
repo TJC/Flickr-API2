@@ -6,6 +6,7 @@ use Digest::MD5 qw(md5_hex);
 use Compress::Zlib;
 use LWP::UserAgent;
 use Retry;
+use Encode;
 use parent qw(LWP::UserAgent);
 
 =head1 NAME
@@ -67,7 +68,7 @@ sub sign_args {
         $sig .= $key . $value;
     }
 
-    return md5_hex($sig);
+    return md5_hex(encode('utf8', $sig));
 }
 
 =head2 request_auth_url ($perms, $frob)
