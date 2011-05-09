@@ -11,3 +11,7 @@ Changes to Flickr::API2
     * Adjust Makefile META info regarding Perl versions.
     * Minor other test improvements.
     * Use test_requires instead of build_requires in Makefile.
+
+2.03  2011-05-09
+    * Fixes for UTF-8 encoded parameters.
+    * Automatically retry API calls if they time-out.

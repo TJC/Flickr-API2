@@ -8,6 +8,8 @@ This module is based on Flickr::API by Cal Henderson, forked and updated.
 Changes from Version 1:
 
  * Update API URLs to api.flickr.com
+ * UTF-8 support.
+ * Automatically retry API calls that time-out.
  * Remove XML libraries
  * Return Perl structure
  * Use JSON API at Flickr
