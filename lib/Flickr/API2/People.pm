@@ -5,7 +5,7 @@ use Flickr::API2::User;
 
 =head1 NAME
 
-Flickr::API2::people
+Flickr::API2::People
 
 =head1 METHODS
 
