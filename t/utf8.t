@@ -36,4 +36,19 @@ my $result = $api->test->echo(%vars);
 is($result->{simple}{_content}, $vars{simple}, "Simple utf8 worked");
 is($result->{chinese}{_content}, $vars{chinese}, "Chinese chars worked");
 
+# Can we search by a UTF-8 tag?
+{
+    my @photos = $api->photos->search(
+        tags => 'gödöllő',
+        per_page => 2,
+    );
+    is(scalar(@photos), 2, "Returned two photos");
+    isa_ok($photos[0], 'Flickr::API2::Photo');
+#    for my $p (@photos) {
+#        diag("Photo title: " . $p->title);
+#        diag("Photo title: " . $p->page_url);
+#    }
+}
+
+
 done_testing();
