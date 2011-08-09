@@ -42,14 +42,8 @@ To install this module type the following:
 
 DEPENDENCIES
 
-This module requires these other modules and libraries:
-
-  LWP::UserAgent
-  Digest::MD5
-  HTTP::Request
-  HTTP::Response
-  URI
-  Test::More
+A list of dependencies is maintained in Makefile.PL; they should be
+automatically installed if they are missing.
 
 COPYRIGHT AND LICENCE
 
