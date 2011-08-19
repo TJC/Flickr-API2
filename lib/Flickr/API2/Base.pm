@@ -48,6 +48,7 @@ sub _response_to_photos {
             url_s => $_->{url_s},
             url_m => $_->{url_m},
             url_l => $_->{url_l},
+            url_o => $_->{url_o},
             path_alias => $_->{path_alias},
         )
     } @{ $photos->{photo} };
