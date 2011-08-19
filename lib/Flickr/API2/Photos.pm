@@ -31,7 +31,7 @@ sub search {
     my %args = @_;
     $args{extras} ||= join(',',
         qw(
-            date_upload date_taken owner_name url_s url_m url_l path_alias
+            date_upload date_taken owner_name url_s url_m url_l url_o path_alias
         )
     );
 
