@@ -15,3 +15,9 @@ Changes to Flickr::API2
 2.03  2011-05-09
     * Fixes for UTF-8 encoded parameters.
     * Automatically retry API calls if they time-out.
+
+2.04  2011-08-22
+    * added url_o support
+    * Update dependencies entry in README
+    * Add test for searching by utf8 tags
+    * Adjusted metadata
