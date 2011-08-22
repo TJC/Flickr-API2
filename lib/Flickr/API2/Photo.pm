@@ -40,6 +40,7 @@ has 'owner_name' => ( is => 'rw' );
 has 'url_s' => ( is => 'rw' );
 has 'url_m' => ( is => 'rw' );
 has 'url_l' => ( is => 'rw' );
+has 'url_o' => ( is => 'rw' );
 has 'description' => ( is => 'rw' );
 has 'path_alias' => ( is => 'rw' );
 
