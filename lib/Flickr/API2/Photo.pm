@@ -1,4 +1,5 @@
 package Flickr::API2::Photo;
+use Encode::Base58;
 use Mouse;
 extends 'Flickr::API2::Base';
 
@@ -100,14 +101,11 @@ sub page_url {
 
 Returns the shortened URL for the photo page, ie. at http://flic.kr/
 
-NOT YET IMPLEMENTED
-
 =cut
 
 sub short_url {
     my $self = shift;
-    # TODO: implement base58 encoding of the id
-    sprintf('http://flic.kr/p/%s', $self->id);
+    sprintf('http://flic.kr/p/%s', encode_base58($self->id));
 }
 
 __PACKAGE__->meta->make_immutable;
