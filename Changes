@@ -21,3 +21,7 @@ Changes to Flickr::API2
     * Update dependencies entry in README
     * Add test for searching by utf8 tags
     * Adjusted metadata
+
+2.05  2011-10-05
+    * Added support for shortened URLs from photos
+

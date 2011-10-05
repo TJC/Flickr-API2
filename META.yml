@@ -10,7 +10,7 @@ build_requires:
 configure_requires:
   ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 1.00'
+generated_by: 'Module::Install version 1.01'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -25,6 +25,7 @@ recommends:
 requires:
   Compress::Zlib: 0
   Digest::MD5: 0
+  Encode::Base58: 0
   HTTP::Message: 1.56
   HTTP::Request: 0
   HTTP::Response: 0
@@ -37,4 +38,4 @@ requires:
   perl: 5.8.8
 resources:
   license: http://dev.perl.org/licenses/
-version: 2.03
+version: 2.05
