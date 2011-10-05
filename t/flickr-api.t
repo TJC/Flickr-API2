@@ -79,6 +79,7 @@ throws_ok {
         ok($photos[0]->id, "First photo has an id");
         ok($photos[0]->url_s, "First photo has a small URL");
         ok($photos[0]->page_url, "First photo has a generated page url");
+        ok($photos[0]->short_url, "First photo has a shortened URL");
     };
 }
 

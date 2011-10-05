@@ -22,6 +22,7 @@ requires 'Compress::Zlib';
 requires 'Mouse';
 requires 'Retry';
 requires 'JSON';
+requires 'Encode::Base58';
 
 recommends 'JSON::XS';
 
