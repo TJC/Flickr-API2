@@ -38,4 +38,4 @@ requires:
   perl: 5.8.8
 resources:
   license: http://dev.perl.org/licenses/
-version: 2.05
+version: 2.06
