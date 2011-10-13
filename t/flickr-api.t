@@ -83,4 +83,14 @@ throws_ok {
     };
 }
 
+# Check photo-by-id methods
+{
+    my $photo = $api->photos->by_id(3386874895);
+
+    ok($photo->id, "photo has an id");
+    ok($photo->page_url, "photo has a generated page url");
+    ok($photo->title, "photo has a title");
+    ok($photo->url_m, "photo has a medium sized url");
+}
+
 done_testing();

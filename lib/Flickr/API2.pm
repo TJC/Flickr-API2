@@ -83,6 +83,11 @@ Flickr::API2 - Perl interface to the Flickr API
     say "Title is " . $photo->title;
   }
 
+  Individual photos can be retrieved by id like so:
+
+  my $p = $api->photos->by_id(1122334455);
+  say "Medium JPEG is " . $p->url_m;
+
   To access the raw flickr API, use methods like:
 
   my $response = $api->execute_method('flickr.test.echo', {

@@ -38,10 +38,36 @@ has 'date_upload' => ( is => 'rw' );
 has 'date_taken' => ( is => 'rw' );
 has 'owner_id' => ( is => 'rw' );
 has 'owner_name' => ( is => 'rw' );
-has 'url_s' => ( is => 'rw' );
-has 'url_m' => ( is => 'rw' );
-has 'url_l' => ( is => 'rw' );
-has 'url_o' => ( is => 'rw' );
+has 'url_sq' => (
+    is => 'rw',
+    lazy => 1,
+    default => sub { $_[0]->populate_size_urls; $_[0]->url_sq; },
+);
+has 'url_t' => (
+    is => 'rw',
+    lazy => 1,
+    default => sub { $_[0]->populate_size_urls; $_[0]->url_t; },
+);
+has 'url_s' => (
+    is => 'rw',
+    lazy => 1,
+    default => sub { $_[0]->populate_size_urls; $_[0]->url_s; },
+);
+has 'url_m' => (
+    is => 'rw',
+    lazy => 1,
+    default => sub { $_[0]->populate_size_urls; $_[0]->url_m; },
+);
+has 'url_l' => (
+    is => 'rw',
+    lazy => 1,
+    default => sub { $_[0]->populate_size_urls; $_[0]->url_l; },
+);
+has 'url_o' => (
+    is => 'rw',
+    lazy => 1,
+    default => sub { $_[0]->populate_size_urls; $_[0]->url_o; },
+);
 has 'description' => ( is => 'rw' );
 has 'path_alias' => ( is => 'rw' );
 
@@ -49,7 +75,8 @@ has 'path_alias' => ( is => 'rw' );
 
 =head2 info
 
-Returns getInfo results for this photo; not really tested much yet.
+Returns getInfo results for this photo; contains lots of info that isn't
+currently available by simple accessors.
 
 =cut
 
@@ -68,6 +95,10 @@ sub info {
 
 Returns getSizes results for this photo.
 
+Note that you probably don't need to call this directly - instead, see the
+various url accessors. If they're blank, try calling populate_size_urls()
+first.
+
 =cut
 
 sub sizes {
@@ -79,6 +110,33 @@ sub sizes {
         }
     );
     return $response->{sizes};
+}
+
+=head2 populate_size_urls
+
+Populates all the various URLs to the differently-sized images by querying
+the API. This *should* have been done automatically for you, the first time
+you queried one of the url accessors.
+
+=cut
+
+our %label_to_accessor = (
+    Square => 'url_sq',
+    Thumbnail => 'url_t',
+    Small => 'url_s',
+    Medium => 'url_m',
+    Large => 'url_l',
+    Original => 'url_o',
+);
+
+sub populate_size_urls {
+    my $self = shift;
+    my $sizes = $self->sizes->{size};
+    for my $s (@$sizes) {
+        if (my $acc = $label_to_accessor{$s->{label}}) {
+            $self->$acc($s->{source});
+        }
+    }
 }
 
 =head2 page_url
