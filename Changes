@@ -25,3 +25,6 @@ Changes to Flickr::API2
 2.05  2011-10-05
     * Added support for shortened URLs from photos
 
+2.06  2011-10-13
+    * Added support for retrieving a photo by ID
+    * Added square and thumbnail sizes to photo URLs
