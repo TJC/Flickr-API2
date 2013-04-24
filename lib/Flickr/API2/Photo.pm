@@ -27,6 +27,10 @@ description
 
 path_alias
 
+license
+
+tags
+
 =cut
 
 has 'id' => (
@@ -70,6 +74,8 @@ has 'url_o' => (
 );
 has 'description' => ( is => 'rw' );
 has 'path_alias' => ( is => 'rw' );
+has 'license' => ( is => 'rw' );
+has 'tags' => ( is => 'rw' );
 
 =head1 METHODS
 
