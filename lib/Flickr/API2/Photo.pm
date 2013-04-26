@@ -27,6 +27,26 @@ description
 
 path_alias
 
+license
+
+tags
+
+height_s
+
+width_s
+
+height_m
+
+width_m
+
+height_l
+
+width_l
+
+height_o
+
+width_o
+
 =cut
 
 has 'id' => (
@@ -70,6 +90,16 @@ has 'url_o' => (
 );
 has 'description' => ( is => 'rw' );
 has 'path_alias' => ( is => 'rw' );
+has 'license' => ( is => 'rw' );
+has 'tags' => ( is => 'rw' );
+has 'height_s' => ( is => 'rw' );
+has 'width_s' => ( is => 'rw' );
+has 'height_m' => ( is => 'rw' );
+has 'width_m' => ( is => 'rw' );
+has 'height_l' => ( is => 'rw' );
+has 'width_l' => ( is => 'rw' );
+has 'height_o' => ( is => 'rw' );
+has 'width_o' => ( is => 'rw' );
 
 =head1 METHODS
 
