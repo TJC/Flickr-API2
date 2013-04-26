@@ -30,6 +30,8 @@ sub by_id {
     $p->owner_name($info->{owner}{realname});
     $p->owner_id($info->{owner}{nsid});
     $p->path_alias($info->{owner}{username});
+    $p->license($info->{license});
+    $p->tags($info->{tags}{tag});
 
     return $p;
 }
@@ -63,7 +65,7 @@ sub search {
     die("Didn't understand response (or no photos)")
         unless exists $r->{photos};
 
-    return $self->_response_to_photos($r->{photos})
+    return $self->_response_to_photos($r->{photos});
 }
 
 __PACKAGE__->meta->make_immutable;
