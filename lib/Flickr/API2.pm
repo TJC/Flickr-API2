@@ -21,7 +21,7 @@ sub new {
     my $self = {
         _raw => Flickr::API2::Raw->new($options),
         rest_uri => $options->{rest_uri}
-          || 'http://api.flickr.com/services/rest/',
+          || 'https://api.flickr.com/services/rest/',
     };
 
     bless $self, $class;
