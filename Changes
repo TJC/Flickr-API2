@@ -28,3 +28,9 @@ Changes to Flickr::API2
 2.06  2011-10-13
     * Added support for retrieving a photo by ID
     * Added square and thumbnail sizes to photo URLs
+
+2.07  2014-05-20
+  * use ssl api endpoint by default
+  * Fixed some typeos in Base _response_to_photos & added attributes
+  * added attributes to by_id in Photos as per issue #5
+  * Fix UTF8 test

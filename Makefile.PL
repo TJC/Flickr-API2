@@ -7,6 +7,8 @@ abstract 'Perl bindings to Flickr API';
 perl_version '5.008008';
 all_from 'lib/Flickr/API2.pm';
 
+repository 'https://github.com/TJC/Flickr-API2';
+
 test_requires 'Test::More';
 test_requires 'Test::Exception';
 test_requires 'LWP::Online';
