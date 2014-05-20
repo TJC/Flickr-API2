@@ -2,7 +2,6 @@
 use strict;
 use warnings;
 use LWP::Online ':skip_all';
-use Data::Dumper;
 use utf8;
 
 # Skip online tests if we can't contact the Flickr::API..
@@ -39,7 +38,7 @@ is($result->{chinese}{_content}, $vars{chinese}, "Chinese chars worked");
 # Can we search by a UTF-8 tag?
 {
     my @photos = $api->photos->search(
-        tags => 'gödöllő',
+        tags => 'café',
         per_page => 2,
     );
     is(scalar(@photos), 2, "Returned two photos");
@@ -50,5 +49,4 @@ is($result->{chinese}{_content}, $vars{chinese}, "Chinese chars worked");
 #    }
 }
 
-
-done_testing();
+done_testing;
