@@ -34,3 +34,7 @@ Changes to Flickr::API2
   * Fixed some typeos in Base _response_to_photos & added attributes
   * added attributes to by_id in Photos as per issue #5
   * Fix UTF8 test
+
+2.08  2014-05-22
+  * Add LWP::Protocol::https as requirement
+
