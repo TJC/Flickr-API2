@@ -17,6 +17,7 @@ requires 'parent';
 requires 'LWP::UserAgent';
 requires 'HTTP::Request';
 requires 'HTTP::Response';
+requires 'LWP::Protocol::https';
 requires 'HTTP::Message' => 1.56;
 requires 'URI' => 1.18;
 requires 'Digest::MD5';
