@@ -7,6 +7,7 @@ use Compress::Zlib;
 use LWP::UserAgent;
 use Retry;
 use Encode;
+use Carp qw(croak);
 use parent qw(LWP::UserAgent);
 
 =head1 NAME
@@ -129,7 +130,7 @@ sub execute_request {
 
     my $response = $self->do_request($request);
 
-    die("API call failed with HTTP status: " . $response->code . "\n")
+    croak("API call failed with HTTP status: " . $response->code)
         unless $response->code == 200;
 
     my $content = $response->decoded_content;
@@ -137,7 +138,7 @@ sub execute_request {
 
     my $json = eval { decode_json($content) };
     if ($@) {
-        die("Failed to parse API response as JSON: $@\n");
+        croak("Failed to parse API response as JSON. Error=$@\nContent=$content\n");
     }
 
     if ( $json->{stat} eq 'ok' ) {
@@ -146,7 +147,7 @@ sub execute_request {
         # It doesn't have much of interest at this stage, I think.
     }
 
-    die(sprintf("API call failed: \%s (\%s)\n",
+    croak(sprintf("API call failed: \%s (\%s)\n",
                 $json->{message}, $json->{code})
     );
 }
@@ -172,7 +173,7 @@ sub do_request {
     $agent->retry(sub {
         $r = $self->request($request);
         if (not $r->is_success and $r->status_line =~ /timeout/) {
-            die("Connection timed out\n");
+            croak("Connection timed out");
         }
     });
     return $r;

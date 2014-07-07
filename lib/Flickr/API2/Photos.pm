@@ -1,6 +1,7 @@
 package Flickr::API2::Photos;
 use Mouse;
 use Flickr::API2::Photo;
+use Carp qw(croak);
 extends 'Flickr::API2::Base';
 
 =head1 NAME
@@ -62,7 +63,7 @@ sub search {
     my $r = $self->api->execute_method(
         'flickr.photos.search', \%args
     );
-    die("Didn't understand response (or no photos)")
+    croak("Didn't understand response (or no photos)")
         unless exists $r->{photos};
 
     return $self->_response_to_photos($r->{photos});
