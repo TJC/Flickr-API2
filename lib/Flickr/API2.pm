@@ -19,7 +19,7 @@ sub new {
       unless $options->{key} and $options->{secret};
 
     my $self = {
-        _raw => Flickr::API2::Raw->new($options),
+        _raw     => Flickr::API2::Raw->new($options),
         rest_uri => $options->{rest_uri}
           || 'https://api.flickr.com/services/rest/',
     };
@@ -30,7 +30,7 @@ sub new {
 sub execute_method {
     my ( $self, $method, $args ) = @_;
 
-    my $request = new Flickr::API2::Request(
+    my $request = Flickr::API2::Request->new(
         {
             method   => $method,
             args     => $args,
