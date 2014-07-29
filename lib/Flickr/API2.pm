@@ -9,13 +9,13 @@ use Flickr::API2::Interestingness;
 use Flickr::API2::People;
 use Flickr::API2::Raw;
 
-our $VERSION = '2.08';
+our $VERSION = '2.09';
 
 sub new {
     my $class   = shift;
     my $options = shift;
 
-    die "You must supply an API key and secret to the constructor"
+    croak("You must supply an API key and secret to the constructor")
       unless $options->{key} and $options->{secret};
 
     my $self = {

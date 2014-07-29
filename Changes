@@ -38,3 +38,6 @@ Changes to Flickr::API2
 2.08  2014-05-22
   * Add LWP::Protocol::https as requirement
 
+2.09  2014-07-07
+  * use Carp::croak instead of die for better error reporting.
+
