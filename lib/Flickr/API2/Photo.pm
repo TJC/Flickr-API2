@@ -56,6 +56,7 @@ has 'id' => (
 has 'title' => ( is => 'rw' );
 has 'date_upload' => ( is => 'rw' );
 has 'date_taken' => ( is => 'rw' );
+has 'count_faves' => ( is => 'rw' );
 has 'owner_id' => ( is => 'rw' );
 has 'owner_name' => ( is => 'rw' );
 has 'url_sq' => (
