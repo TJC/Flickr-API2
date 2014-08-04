@@ -1,10 +1,10 @@
 use inc::Module::Install;
 
 name     'Flickr-API2';
-author   q{Toby Corkindale <tjc@cpan.org>};
+author   q{Toby Corkindale <tjc@wintrmute.net>};
 license  'perl';
 abstract 'Perl bindings to Flickr API';
-perl_version '5.008008';
+perl_version '5.010001';
 all_from 'lib/Flickr/API2.pm';
 
 repository 'https://github.com/TJC/Flickr-API2';
