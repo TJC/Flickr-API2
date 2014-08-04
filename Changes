@@ -41,3 +41,7 @@ Changes to Flickr::API2
 2.09  2014-07-07
   * use Carp::croak instead of die for better error reporting.
 
+2.10  2014-08-04
+  * Add support for returning favourite counts in searches
+  * Bump minimum required Perl version to 5.10.1
+

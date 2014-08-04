@@ -1,7 +1,7 @@
 ---
 abstract: 'Perl bindings to Flickr API'
 author:
-  - 'Toby Corkindale <tjc@cpan.org>'
+  - 'Toby Corkindale <tjc@wintrmute.net>'
 build_requires:
   ExtUtils::MakeMaker: 6.59
   LWP::Online: 0
@@ -11,7 +11,7 @@ configure_requires:
   ExtUtils::MakeMaker: 6.59
 distribution_type: module
 dynamic_config: 1
-generated_by: 'Module::Install version 1.06'
+generated_by: 'Module::Install version 1.08'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -31,13 +31,14 @@ requires:
   HTTP::Request: 0
   HTTP::Response: 0
   JSON: 0
+  LWP::Protocol::https: 0
   LWP::UserAgent: 0
   Mouse: 0
   Retry: 0
   URI: 1.18
   parent: 0
-  perl: 5.8.8
+  perl: 5.10.1
 resources:
   license: http://dev.perl.org/licenses/
   repository: https://github.com/TJC/Flickr-API2
-version: 2.07
+version: '2.10'
