@@ -86,7 +86,7 @@ sub getPublicPhotos {
 
     $args{extras} ||= join(',',
         qw(
-            date_upload date_taken owner_name url_s url_m url_l path_alias count_faves
+            date_upload date_taken owner_name url_s url_m url_l path_alias count_faves views
         )
     );
 
