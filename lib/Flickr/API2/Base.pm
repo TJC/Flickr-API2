@@ -59,6 +59,7 @@ sub _response_to_photos {
             width_o => $_->{width_o},
             path_alias => $_->{pathalias},
             count_faves => $_->{count_faves},
+            views => $_->{views},
         ),
     } @{ $photos->{photo} };
 
