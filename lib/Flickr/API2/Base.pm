@@ -58,11 +58,7 @@ sub _response_to_photos {
             height_o => $_->{height_o},
             width_o => $_->{width_o},
             path_alias => $_->{pathalias},
-<<<<<<< HEAD
             count_faves => $_->{count_faves}
-=======
-            count_faves => $_->{count_faves}
->>>>>>> 43fbdb75361b87bc6183613f826ca90977fcb1d2
         ),
     } @{ $photos->{photo} };
 
