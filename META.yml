@@ -11,7 +11,7 @@ configure_requires:
   ExtUtils::MakeMaker: 6.59
 distribution_type: module
 dynamic_config: 1
-generated_by: 'Module::Install version 1.08'
+generated_by: 'Module::Install version 1.16'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -33,12 +33,12 @@ requires:
   JSON: 0
   LWP::Protocol::https: 0
   LWP::UserAgent: 0
-  Mouse: 0
+  Moo: 0
   Retry: 0
   URI: 1.18
   parent: 0
-  perl: 5.10.1
+  perl: 5.12.0
 resources:
   license: http://dev.perl.org/licenses/
   repository: https://github.com/TJC/Flickr-API2
-version: '2.10'
+version: '2.50'

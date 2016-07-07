@@ -8,7 +8,7 @@ use Flickr::API2::Interestingness;
 use Flickr::API2::People;
 use Flickr::API2::Raw;
 
-our $VERSION = '2.10';
+our $VERSION = '2.50';
 
 sub new {
     my $class   = shift;

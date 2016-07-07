@@ -45,3 +45,8 @@ Changes to Flickr::API2
   * Add support for returning favourite counts in searches
   * Bump minimum required Perl version to 5.10.1
 
+2.50  2016-07-07
+  * Switch to Moo from Mouse
+  * Update failing people.t test
+  * Bump min perl version to 5.12
+
