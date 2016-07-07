@@ -32,7 +32,7 @@ is($user->username, 'Wintrmute', "Found me by username");
 
 # TODO: Improve the way info is returned..
 my $info = $user->getInfo;
-is($info->{realname}->{_content}, 'Toby Corkindale',
+is($info->{realname}->{_content}, 'Toby Wintermute',
    ".. and they know my name"
 );
 
