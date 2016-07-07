@@ -1,5 +1,7 @@
 package Flickr::API2::Interestingness;
-use Mouse;
+use 5.12.0;
+use warnings;
+use Moo;
 use Flickr::API2::Photo;
 extends 'Flickr::API2::Base';
 
@@ -43,5 +45,4 @@ sub getList {
     return $self->_response_to_photos($r->{photos})
 }
 
-__PACKAGE__->meta->make_immutable;
 1;

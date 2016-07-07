@@ -1,10 +1,24 @@
 package Flickr::API2::User;
-use Mouse;
+use 5.12.0;
+use warnings;
+use Moo;
 extends 'Flickr::API2::Base';
+
+=head2 NSID
+
+Accessor for NSID
+
+=cut
 
 has 'NSID' => (
     is => 'rw',
 );
+
+=head2 username
+
+accessor for username
+
+=cut
 
 has 'username' => (
     is => 'rw',
@@ -32,5 +46,4 @@ sub getPublicPhotos {
     $self->api->people->getPublicPhotos($self->NSID, %args);
 }
 
-__PACKAGE__->meta->make_immutable;
 1;

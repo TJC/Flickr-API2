@@ -1,5 +1,7 @@
 package Flickr::API2::Base;
-use Mouse;
+use 5.12.0;
+use warnings;
+use Moo;
 use Flickr::API2::Photo;
 
 =head1 NAME
@@ -20,7 +22,7 @@ A reference to the parent API object.
 
 has 'api' => (
     is => 'ro',
-    isa => 'Flickr::API2',
+    isa => sub { die("Invalid API object") unless ($_[0]->isa('Flickr::API2')) },
     required => 1,
 );
 
@@ -66,5 +68,4 @@ sub _response_to_photos {
     return @photos;
 }
 
-__PACKAGE__->meta->make_immutable;
 1;

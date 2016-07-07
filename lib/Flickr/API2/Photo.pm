@@ -1,6 +1,8 @@
 package Flickr::API2::Photo;
+use 5.12.0;
+use warnings;
 use Encode::Base58;
-use Mouse;
+use Moo;
 extends 'Flickr::API2::Base';
 
 =head1 NAME
@@ -202,5 +204,4 @@ sub short_url {
     sprintf('http://flic.kr/p/%s', encode_base58($self->id));
 }
 
-__PACKAGE__->meta->make_immutable;
 1;

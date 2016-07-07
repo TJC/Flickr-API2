@@ -1,5 +1,7 @@
 package Flickr::API2::Test;
-use Mouse;
+use 5.12.0;
+use warnings;
+use Moo;
 extends 'Flickr::API2::Base';
 
 =head2 echo
@@ -15,5 +17,4 @@ sub echo {
     );
 }
 
-__PACKAGE__->meta->make_immutable;
 1;

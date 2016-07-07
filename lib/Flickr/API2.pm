@@ -1,6 +1,5 @@
 package Flickr::API2;
-use 5.10.1;
-use strict;
+use 5.12.0;
 use warnings;
 use Flickr::API2::Request;
 use Flickr::API2::Photos;

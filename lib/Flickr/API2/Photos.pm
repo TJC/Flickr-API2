@@ -1,5 +1,7 @@
 package Flickr::API2::Photos;
-use Mouse;
+use 5.12.0;
+use warnings;
+use Moo;
 use Flickr::API2::Photo;
 use Carp qw(croak);
 extends 'Flickr::API2::Base';
@@ -69,5 +71,4 @@ sub search {
     return $self->_response_to_photos($r->{photos});
 }
 
-__PACKAGE__->meta->make_immutable;
 1;

@@ -1,7 +1,9 @@
 package Flickr::API2::People;
-use Mouse;
-extends 'Flickr::API2::Base';
+use 5.12.0;
+use warnings;
 use Flickr::API2::User;
+use Moo;
+extends 'Flickr::API2::Base';
 
 =head1 NAME
 
@@ -100,5 +102,4 @@ sub getPublicPhotos {
     return $self->_response_to_photos($r->{photos})
 }
 
-__PACKAGE__->meta->make_immutable;
 1;

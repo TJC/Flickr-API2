@@ -1,5 +1,5 @@
 package Flickr::API2::Raw;
-use strict;
+use 5.12.0;
 use warnings;
 use JSON qw(decode_json);
 use Digest::MD5 qw(md5_hex);

@@ -4,7 +4,7 @@ name     'Flickr-API2';
 author   q{Toby Corkindale <tjc@wintrmute.net>};
 license  'perl';
 abstract 'Perl bindings to Flickr API';
-perl_version '5.010001';
+perl_version '5.012000';
 all_from 'lib/Flickr/API2.pm';
 
 repository 'https://github.com/TJC/Flickr-API2';
@@ -22,7 +22,7 @@ requires 'HTTP::Message' => 1.56;
 requires 'URI' => 1.18;
 requires 'Digest::MD5';
 requires 'Compress::Zlib';
-requires 'Mouse';
+requires 'Moo';
 requires 'Retry';
 requires 'JSON';
 requires 'Encode::Base58';

@@ -1,6 +1,5 @@
 package Flickr::API2::Request;
-
-use strict;
+use 5.12.0;
 use warnings;
 use HTTP::Request;
 use URI;
