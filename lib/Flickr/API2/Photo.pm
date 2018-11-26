@@ -188,7 +188,7 @@ Returns the URL for this photo's page on Flickr.
 sub page_url {
     my $self = shift;
     return sprintf('http://flickr.com/photos/%s/%d',
-        ($self->path_alias || $self->owner_name || $self->owner_id),
+        ($self->path_alias || $self->owner_id),
         $self->id
     );
 }
